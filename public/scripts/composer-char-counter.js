@@ -3,18 +3,21 @@ $(document).ready(function() {
 
 
 
-  $(".new-tweet textarea").keypress(function () {
+  $(".new-tweet textarea").keyup(function (event) {
     let charLeft = 140;
     let currentChar = $(this).val().length;
     let counter = $(this).parent().children(".counter");
 
-    currentChar = charLeft - currentChar - 1;
+    currentChar = charLeft - currentChar;
 
     counter.text(currentChar);
 
-    console.log(counter.html());
+    if (counter.text() < 0) {
+      counter.css({"color": "red"});
+    } else {
+      counter.css({"color": "black"});
+    }
 
-    console.log(currentChar);
   });
 
 
