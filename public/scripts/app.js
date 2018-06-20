@@ -9,7 +9,6 @@
 $(function() {
 
 function loadTweets() {
-
   $.ajax({
     method: 'GET',
     url: '/tweets',
@@ -23,6 +22,8 @@ function loadTweets() {
 
 function renderTweets(tweets) {
   // loops through tweets
+  $('.tweets-container').empty();
+
   for (let i in tweets) {
     let $tweet = createTweetElement(tweets[i]);
     $('.tweets-container').prepend($tweet);
@@ -89,19 +90,32 @@ const $submit = $('.new-tweet-form input:submit');
   $submit.on('click', function (event) {
     event.preventDefault();
 
+    //Variable for making sure the value is valid for our website
+    const $tweetTest = $("[name='text']").val();
     const $tweetContent = $("[name='text']").serialize();
 
-    console.log($tweetContent);
+    if ($tweetTest === "") {
+      alert("You're not humming about anything! Your tweet is empty.");
+    } else if ($tweetTest.length > 140) {
+      alert("That hum is way too long!");
+    } else {
 
-    $.ajax({
-      method: 'POST',
-      url: '/tweets',
-      data: $tweetContent,
-      // success: function(data) {
-      //   loadTweets()
-      // }
 
-    });
+      $.ajax({
+        method: 'POST',
+        url: '/tweets',
+        data: $tweetContent,
+        success: function() {
+
+          loadTweets();
+
+          $("[name='text']").val('');
+
+        }
+
+      });
+
+    }
 
 
   });
