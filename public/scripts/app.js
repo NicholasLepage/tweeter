@@ -8,6 +8,7 @@
 
 $(function() {
 
+
 function loadTweets() {
   $.ajax({
     method: 'GET',
@@ -30,6 +31,12 @@ function renderTweets(tweets) {
   }
 }
 
+function escape(str) {
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
 const createTweetElement = function(data) {
 
   // Grab name
@@ -43,7 +50,7 @@ const createTweetElement = function(data) {
   const $handle = $(`<p id="handlebar">${handle}</p>`);
   // Grab text content
   const content = data.content.text;
-  const $content = $(`<p class="text">${content}</p>`);
+  const $content = $(`<p class="text">${escape(content)}</p>`);
   // Grab created_at
   const time = data.created_at;
   const $time = $(`<p class="text">${time}</p>`);
@@ -95,9 +102,13 @@ const $submit = $('.new-tweet-form input:submit');
     const $tweetContent = $("[name='text']").serialize();
 
     if ($tweetTest === "") {
-      alert("You're not humming about anything! Your tweet is empty.");
+      let $emptyTweet = $('<p class="errorMessage">You\'re not humming about anything! Your tweet is empty.</p>');
+      $('.container').prepend($emptyTweet);
+      $emptyTweet.fadeOut(5000);
     } else if ($tweetTest.length > 140) {
-      alert("That hum is way too long!");
+        let $longTweet = $('<p class="errorMessage">That hum is way too long!</p>');
+        $('.container').prepend($longTweet);
+        $longTweet.fadeOut(5000);
     } else {
 
 
@@ -110,13 +121,13 @@ const $submit = $('.new-tweet-form input:submit');
           loadTweets();
 
           $("[name='text']").val('');
+          $('.counter').text(140);
 
         }
 
       });
 
     }
-
 
   });
 
