@@ -3,6 +3,7 @@
   border-radius: 10px;
   margin-left: 2em;
   margin-right: 2em;
+  margin-top: 20px;
 }
 
 .individual-tweet:hover {
@@ -18,7 +19,7 @@
   display: flex;
   justify-content: space-between;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 20px;
   color: #234751a5;
   background-color: #efefef7f;
   border-bottom: 1px solid #efefef;
@@ -34,21 +35,21 @@
 
 .individual-tweet header #username {
   padding-right: 135px;
-  position: relative;
-  bottom: 10px;
-
+  position: absolute;
+  font-size: 22px;
+  left: 475px;
 }
 
 .individual-tweet header #handlebar {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 300;
   padding-right: 10px;
 }
 
 .individual-tweet div {
   font-size: 20px;
-  padding-top: 1.5em;
-  padding-bottom: 1.5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 .individual-tweet footer {
