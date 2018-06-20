@@ -15,6 +15,10 @@
   background-color: #efefef
 }
 
+.individual-tweet:hover .material-icons{
+  display: block;
+}
+
 .individual-tweet header {
   display: flex;
   justify-content: space-between;
@@ -53,10 +57,19 @@
 }
 
 .individual-tweet footer {
+  display: flex;
   font-size: 14px;
   border-top: 1px solid #efefef;
 }
 
 .individual-tweet .text {
   padding-left: 1em;
+}
+
+.individual-tweet .material-icons {
+  display: none;
+  position: relative;
+  font-size: 20px;
+  left: 215px;
+  top: 10px;
 }

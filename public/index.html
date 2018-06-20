@@ -4,6 +4,9 @@
     <!-- Meta Information -->
     <title>Tweeter - Home Page</title>
 
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
 
@@ -30,6 +33,7 @@
 
     <!-- Character counter JS -->
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+
   </head>
 
   <body>
@@ -44,7 +48,7 @@
     <main class="container">
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
-        <form method="POST" action="/tweets/">
+        <form class="new-tweet-form" method="POST" action="/tweets/">
           <textarea name="text" placeholder="What are you humming about?"></textarea>
           <input type="submit" value="Tweet">
           <span class="counter">140</span>
@@ -55,7 +59,7 @@
 
       <section class="tweets-container">
 
-<!--         <article class="individual-tweet">
+  <!--       <article class="individual-tweet">
 
           <header>
             <img class="image" src="https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png">
@@ -69,6 +73,9 @@
 
           <footer class="footer">
             <p class="text">June 10th</p>
+            <i class="material-icons">flag</i>
+            <i class="material-icons">share</i>
+            <i class="material-icons">favorite</i>
           </footer>
 
         </article> -->

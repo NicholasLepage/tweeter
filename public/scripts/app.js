@@ -5,63 +5,28 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": {
-        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-        "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-      },
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": {
-        "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-        "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-        "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-      },
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Johann von Goethe",
-      "avatars": {
-        "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-        "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-        "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-      },
-      "handle": "@johann49"
-    },
-    "content": {
-      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-    },
-    "created_at": 1461113796368
-  }
-];
 
 $(function() {
+
+function loadTweets() {
+
+  $.ajax({
+    method: 'GET',
+    url: '/tweets',
+    success: function(data) {
+      renderTweets(data);
+    }
+
+  });
+
+}
 
 function renderTweets(tweets) {
   // loops through tweets
   for (let i in tweets) {
     let $tweet = createTweetElement(tweets[i]);
-    $('.tweets-container').append($tweet);
+    $('.tweets-container').prepend($tweet);
   }
-    // calls createTweetElement for each tweet
-    // takes return value and appends it to the tweets container
 }
 
 const createTweetElement = function(data) {
@@ -81,6 +46,11 @@ const createTweetElement = function(data) {
   // Grab created_at
   const time = data.created_at;
   const $time = $(`<p class="text">${time}</p>`);
+
+  // Create the icons
+  const $flag = $('<i class="material-icons">flag</i>');
+  const $share = $('<i class="material-icons">share</i>');
+  const $favorite = $('<i class="material-icons">favorite</i>');
 
 
 
@@ -102,6 +72,9 @@ const createTweetElement = function(data) {
   const $footer = $('<footer>')
                     .addClass('footer')
                     .append($time)
+                    .append($flag)
+                    .append($share)
+                    .append($favorite)
                     .appendTo($article);
 
 
@@ -109,6 +82,29 @@ const createTweetElement = function(data) {
   return $article;
 };
 
-renderTweets(data);
-});
+loadTweets();
 
+const $submit = $('.new-tweet-form input:submit');
+
+  $submit.on('click', function (event) {
+    event.preventDefault();
+
+    const $tweetContent = $("[name='text']").serialize();
+
+    console.log($tweetContent);
+
+    $.ajax({
+      method: 'POST',
+      url: '/tweets',
+      data: $tweetContent,
+      // success: function(data) {
+      //   loadTweets()
+      // }
+
+    });
+
+
+  });
+
+
+});
