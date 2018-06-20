@@ -1,4 +1,5 @@
 .new-tweet {
+  display: none;
   margin: auto;
   margin-right: 2em;
   margin-left: 2em;

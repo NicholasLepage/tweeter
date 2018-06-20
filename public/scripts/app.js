@@ -8,6 +8,12 @@
 
 $(function() {
 
+const $button = $('#nav-bar button');
+
+$button.on('click', function () {
+  $('.container .new-tweet').slideToggle('slow');
+  $("[name='text']").focus();
+});
 
 function loadTweets() {
   $.ajax({
