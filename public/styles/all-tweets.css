@@ -28,8 +28,8 @@
   background-color: #efefef7f;
   border-bottom: 1px solid #efefef;
   border-top: 1px solid #efefef;
-  border-top-right-radius: 8px;
-  border-top-left-radius: 8px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .individual-tweet header .image {

@@ -8,6 +8,8 @@
 
 $(function() {
 
+
+
 const $button = $('#nav-bar button');
 
 $button.on('click', function () {
