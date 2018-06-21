@@ -39,9 +39,10 @@
 
 .individual-tweet header #username {
   padding-right: 135px;
-  position: absolute;
   font-size: 22px;
-  left: 475px;
+  position: absolute;
+  padding-left: 75px;
+
 }
 
 .individual-tweet header #handlebar {

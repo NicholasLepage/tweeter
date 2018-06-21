@@ -11,7 +11,7 @@ $(function() {
 const $button = $('#nav-bar button');
 
 $button.on('click', function () {
-  $('.container .new-tweet').slideToggle('slow');
+  $('.container .new-tweet').slideToggle(250);
   $("[name='text']").focus();
 });
 
