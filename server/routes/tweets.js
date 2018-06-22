@@ -1,8 +1,9 @@
 "use strict";
 
-const userHelper    = require("../lib/util/user-helper")
+const userHelper    = require("../lib/util/user-helper");
 
 const express       = require('express');
+const moment        = require('moment');
 const tweetsRoutes  = express.Router();
 
 module.exports = function(DataHelpers) {
@@ -36,11 +37,11 @@ module.exports = function(DataHelpers) {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
-        res.status(201).send();
+        res.status(201).json(tweet);
       }
     });
   });
 
   return tweetsRoutes;
 
-}
+};
