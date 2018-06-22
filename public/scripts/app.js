@@ -8,7 +8,6 @@
 
 $(function() {
 
-
 // Makes the compose button slide the New Tweet section on and off
 const $button = $('#nav-bar button');
 $button.on('click', function () {
